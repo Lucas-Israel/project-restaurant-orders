@@ -26,4 +26,22 @@ class MenuBuilder:
 
     # Req 4
     def get_main_menu(self, restriction=None) -> pd.DataFrame:
-        pass
+        a = self.menu_data.dishes
+        dish_name = []
+        ingredients = []
+        price = []
+        restrictions = []
+        for b in a:
+            if not b.get_restrictions().issuperset([restriction]):
+                dish_name.append(b.name)
+                ingredients.append(b.get_ingredients())
+                price.append(b.price)
+                restrictions.append(b.get_restrictions())
+        new_dict = {
+            "dish_name": dish_name,
+            "ingredients": ingredients,
+            "price": price,
+            "restrictions": restrictions,
+        }
+        new_df = pd.DataFrame(new_dict)
+        return new_df
