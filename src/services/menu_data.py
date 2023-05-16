@@ -30,10 +30,3 @@ class MenuData:
             for ing, amount in zip(ing_di[ele], amo_di[ele]):
                 new_dish.add_ingredient_dependency(Ingredient(ing), amount)
             self.dishes.add(new_dish)
-
-
-if __name__ == "__main__":
-    a = MenuData("tests/mocks/menu_base_data.csv")
-    b = a.dishes
-    for c in b:
-        print(c.recipe)
