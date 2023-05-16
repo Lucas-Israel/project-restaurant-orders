@@ -1,4 +1,4 @@
-from csv import DictReader, DictWriter
+from csv import DictReader
 from typing import Dict
 
 from src.models.dish import Recipe
@@ -18,15 +18,6 @@ def read_csv_inventory(inventory_file_path=BASE_INVENTORY) -> Dict:
             inventory[ingredient] = int(row["initial_amount"])
 
     return inventory
-
-
-def write_csv_inventory(data, inventory_file_path=BASE_INVENTORY):
-    print(data)
-    with open(inventory_file_path, "w", newline="") as file:
-        header = ["ingredient", "initial_amount"]
-        writer = DictWriter(file, fieldnames=header)
-        writer.writeheader()
-        writer.writerow({"ingredient": "a", "initial_amount": 2})
 
 
 # Req 5
@@ -53,6 +44,4 @@ class InventoryMapping:
 
         for rec in recipe:
             inventario[rec] -= recipe[rec]
-
-        write_csv_inventory(inventario, self._file_path)
         return None
