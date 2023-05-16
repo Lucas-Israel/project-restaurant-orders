@@ -24,24 +24,33 @@ class MenuBuilder:
 
         self.inventory.consume_recipe(curr_dish.recipe)
 
+    def __stock_checker(self, data):
+        for rec in data.recipe:
+            self.inventory.consume_recipe({rec: data.recipe[rec]})
+
     # Req 4
     def get_main_menu(self, restriction=None) -> pd.DataFrame:
-        a = self.menu_data.dishes
-        dish_name = []
-        ingredients = []
-        price = []
-        restrictions = []
-        for b in a:
-            if not b.get_restrictions().issuperset([restriction]):
-                dish_name.append(b.name)
-                ingredients.append(b.get_ingredients())
-                price.append(b.price)
-                restrictions.append(b.get_restrictions())
-        new_dict = {
-            "dish_name": dish_name,
-            "ingredients": ingredients,
-            "price": price,
-            "restrictions": restrictions,
-        }
-        new_df = pd.DataFrame(new_dict)
+        try:
+            a = self.menu_data.dishes
+            dish_name = []
+            ingredients = []
+            price = []
+            restrictions = []
+            for b in a:
+                self.__stock_checker(b)
+                if not b.get_restrictions().issuperset([restriction]):
+                    dish_name.append(b.name)
+                    ingredients.append(b.get_ingredients())
+                    price.append(b.price)
+                    restrictions.append(b.get_restrictions())
+            new_dict = {
+                "dish_name": dish_name,
+                "ingredients": ingredients,
+                "price": price,
+                "restrictions": restrictions,
+            }
+            new_df = pd.DataFrame(new_dict)
+
+        except ValueError:
+            return pd.DataFrame({})
         return new_df
