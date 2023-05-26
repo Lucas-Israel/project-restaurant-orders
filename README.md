@@ -22,6 +22,7 @@
   <summary>:speech_balloon: Exemplo de funcionamento</summary>
   
 ![Captura de tela de 2023-05-26 15-20-47](https://github.com/Lucas-Israel/project-restaurant-orders/assets/104790267/8a8d0bf0-ccee-4b8e-a0ba-f095bf463950)
+![Captura de tela de 2023-05-26 15-30-12](https://github.com/Lucas-Israel/project-restaurant-orders/assets/104790267/4342aed3-d685-43ab-8c58-82742b2b7589)
 
 </details>
 
